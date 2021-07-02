@@ -33,7 +33,7 @@ import {
 	Placeholder,
 } from 'tiptap-extensions'
 import { Strong, Italic, Strike, Link } from './marks'
-import { Image, PlainTextDocument, ListItem, BulletList } from './nodes'
+import { Image, PlainTextDocument, ListItem, BulletList, Emoji } from './nodes'
 import MarkdownIt from 'markdown-it'
 import taskLists from 'markdown-it-task-lists'
 import { translate as t } from '@nextcloud/l10n'
@@ -85,6 +85,7 @@ const createEditor = ({ content, onInit, onUpdate, extensions, enableRichEditing
 				emptyNodeText: t('text', 'Add notes, lists or links …'),
 				showOnlyWhenEditable: true,
 			}),
+			new Emoji(),
 		]
 	} else {
 		richEditingExtensions = [

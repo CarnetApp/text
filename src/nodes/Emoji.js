@@ -1,7 +1,7 @@
 /*
- * @copyright Copyright (c) 2019 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Jonas Meurer <jonas@freesources.org>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Jonas Meurer <jonas@freesources.org>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,16 +20,25 @@
  *
  */
 
-import Image from './Image'
-import PlainTextDocument from './PlainTextDocument'
-import ListItem from './ListItem'
-import BulletList from './BulletList'
-import Emoji from './Emoji'
+import { Node } from 'tiptap'
+import { insertText } from 'tiptap-commands'
 
-export {
-	Image,
-	PlainTextDocument,
-	ListItem,
-	BulletList,
-	Emoji,
+export default class Emoji extends Node {
+
+	get name() {
+		return 'emoji'
+	}
+
+	get schema() {
+		return {
+			inline: true,
+			group: 'inline',
+			content: 'text*',
+		}
+	}
+
+	commands() {
+		return emoji => insertText(emoji)
+	}
+
 }
